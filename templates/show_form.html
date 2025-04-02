@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Данные Формы{% endblock %}
+
+{% if submitted %}
+  {% block page_title %}Данные, полученные из формы{% endblock %}
+  {% block content %}
+    {% if form_data %}
+      <p>Получены следующие данные:</p>
+      <ul class="list-group">
+        {% for key, value in form_data.items() %}
+          <li class="list-group-item"><b>{{ key }}:</b> {{ value }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Данные из формы не были получены.</p>
+    {% endif %}
+    <a href="{{ url_for('show_form') }}" class="btn btn-secondary mt-3">Вернуться к форме</a>
+  {% endblock %}
+{% else %}
+  {% block page_title %}Тестовая форма{% endblock %}
+  {% block content %}
+    <p>Отправьте форму, чтобы увидеть переданные данные.</p>
+    <form method="POST" action="{{ url_for('show_form') }}">
+      <div class="mb-3">
+        <label for="textInput" class="form-label">Текстовое поле</label>
+        <input type="text" class="form-control" id="textInput" name="text_field" value="Какой-то текст">
+      </div>
+      <div class="mb-3">
+        <label for="emailInput" class="form-label">Email</label>
+        <input type="email" class="form-control" id="emailInput" name="email_address" placeholder="name@example.com">
+      </div>
+       <div class="mb-3">
+        <label for="selectControl" class="form-label">Выпадающий список</label>
+         <select class="form-select" id="selectControl" name="selected_option">
+          <option selected>Выберите...</option>
+          <option value="1">Опция 1</option>
+          <option value="2">Опция 2</option>
+          <option value="3">Опция 3</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+  {% endblock %}
+{% endif %}

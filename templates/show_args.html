@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Параметры URL{% endblock %}
+{% block page_title %}Параметры URL (Query String){% endblock %}
+
+{% block content %}
+  {% if args %}
+    <p>Получены следующие параметры:</p>
+    <ul class="list-group">
+      {% for key, value in args.items() %}
+        <li class="list-group-item"><b>{{ key }}:</b> {{ value }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Параметры URL не были переданы.</p>
+    <p>Попробуйте добавить что-нибудь в адресную строку, например: <a href="{{ url_for('show_args') }}?name=Flask&version=3.0">?name=Flask&version=3.0</a></p>
+  {% endif %}
+{% endblock %}
