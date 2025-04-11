@@ -38,7 +38,7 @@ def validate_and_format_phone(phone_raw):
     digits = re.sub(r'\D', '', phone_raw)
     allowed_chars_pattern = re.compile(r'^[0-9()\-.\s+]+$')
     if not allowed_chars_pattern.match(phone_raw) and phone_raw: 
-         if not phone_raw.isdigit() and re.search(r'[^0-9()\-.\s+]', phone_raw):
+        if not phone_raw.isdigit() and re.search(r'[^0-9()\-.\s+]', phone_raw):
             return None, "Недопустимый ввод. В номере телефона встречаются недопустимые символы."
 
     n_digits = len(digits)
@@ -49,7 +49,7 @@ def validate_and_format_phone(phone_raw):
     if phone_stripped.startswith('+7') or phone_stripped.startswith('8'):
         expected_len = 11
     elif n_digits == 10 :
-         expected_len = 10
+        expected_len = 10
     elif n_digits == 11 and not (phone_stripped.startswith('+7') or phone_stripped.startswith('8')):
         expected_len = -1
     elif n_digits > 0 :
@@ -58,13 +58,13 @@ def validate_and_format_phone(phone_raw):
 
     if n_digits != expected_len :
          if expected_len in (10, 11):
-             return None, "Недопустимый ввод. Неверное количество цифр."
+            return None, "Недопустимый ввод. Неверное количество цифр."
          elif n_digits > 0:
-              return None, "Недопустимый ввод. Неверное количество цифр."
+            return None, "Недопустимый ввод. Неверное количество цифр."
          elif n_digits == 0 and not phone_raw:
-             return None, None
+            return None, None
          else:
-               return None, "Недопустимый ввод. Неверное количество цифр."
+            return None, "Недопустимый ввод. Неверное количество цифр."
 
     if n_digits == 11:
         target_digits = digits[1:]
