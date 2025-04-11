@@ -2,7 +2,6 @@ import re
 from flask import Flask, render_template, request, make_response, redirect, url_for
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_very_secret_and_unguessable_key'
 
 # Задание 1
 
@@ -77,7 +76,6 @@ def validate_and_format_phone(phone_raw):
 
 @app.route('/phone-checker', methods=['GET', 'POST'])
 def phone_checker():
-    """Обрабатывает форму проверки номера телефона."""
     phone_number_raw = ""
     error_message = None
     validation_class = ""
@@ -102,7 +100,6 @@ def phone_checker():
 
 @app.route('/')
 def index():
-    """Главная страница со ссылками."""
     return render_template('base.html', is_index=True) 
 
 if __name__ == '__main__':
