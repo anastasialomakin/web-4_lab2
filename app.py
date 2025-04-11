@@ -55,15 +55,14 @@ def validate_and_format_phone(phone_raw):
     elif n_digits > 0 :
         expected_len = 10
 
-
     if n_digits != expected_len :
-         if expected_len in (10, 11):
+        if expected_len in (10, 11):
             return None, "Недопустимый ввод. Неверное количество цифр."
-         elif n_digits > 0:
+        elif n_digits > 0:
             return None, "Недопустимый ввод. Неверное количество цифр."
-         elif n_digits == 0 and not phone_raw:
+        elif n_digits == 0 and not phone_raw:
             return None, None
-         else:
+        else:
             return None, "Недопустимый ввод. Неверное количество цифр."
 
     if n_digits == 11:
